@@ -237,8 +237,9 @@ public class IgnitionModlMojo extends AbstractMojo {
                     getLog().info("copying dependency artifact: " + artifactFileName);
 
                     File artifactFile = new File(tempDirPath.toFile(), artifactFileName);
-
-                    Files.copy(new FileInputStream(artifact.getFile()), artifactFile.toPath());
+                    if(!artifactFile.exists()) {
+                        Files.copy(new FileInputStream(artifact.getFile()), artifactFile.toPath());
+                    }
                 }
             }
 
